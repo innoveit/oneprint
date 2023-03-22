@@ -4,7 +4,7 @@ Created on 2020-07-10
 '''
 from __future__ import print_function
 
-__version__ = '1.3.0'
+__version__ = '1.3.1'
 
 CHAR_V_LINE = '|'
 CHAR_H_LINE = '-'
@@ -109,22 +109,14 @@ class BasePrint(object):
         self._get_lock = get_lock
 
     def _get_char_width(self, c):
-        # 获取字符宽度
-        if isinstance(c, type(u'')):
-            c = u'%s' % c
-        if not c:
-            return 0
-        elif len(c) == 1:
-            return 1 if ord(c) < 128 else 2
-        else:
-            raise PrintException('char "%s" can\' get width' % c)
+        return len(c)        
 
-    def _get_line_width(self, l):
+    def _get_line_width(self, l):        
         if isinstance(l, type(u'')):
             l = u'%s' % l
         return sum(map(self._get_char_width, l))
 
-    def _fill_text(self, text, width, align):
+    def _fill_text(self, text, width, align):        
         bw = self._get_char_width(CHAR_BLANK)
         tw = int(self._get_line_width(text) / bw)
         width = int(width / bw)
