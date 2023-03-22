@@ -412,7 +412,6 @@ class EscPosPrint(BasePrint):
         if text_type:
             setd['text_type'] = text_type
         if setd:
-            print(setd)
             self.dummy.set(**setd)
 
     def _handle_node(self, node):
